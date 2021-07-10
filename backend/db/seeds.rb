@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.destroy_all()
+Message.destroy_all()
+Conversation.destroy_all()
+
+u1 = User.create(username: 'sb', password: '123', full_name: 'Sara Bastian')
+u2 = User.create(username: 'sm', password: '12', full_name: 'Sienna Mori')
+
+c1 = Conversation.create(patient_id: u1.id, patient_partner_id: u2.id)
+
+m1 = Message.create(body: 'Hi there', conversation_id: c1.id, user_id: u1.id)
