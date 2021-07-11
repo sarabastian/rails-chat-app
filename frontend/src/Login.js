@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login(props) {
+const Login = ({ handleLogin }) => {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -97,8 +97,8 @@ export default function Login(props) {
           console.log(data.user_info);
           console.log(data);
           localStorage.setItem("token", data.user_info.user_id);
-          props.handleLogin();
-          history.push("/my-projects");
+          handleLogin();
+          history.push("/patient-home");
         } else {
           alert("Oops! We couldn't find you. Please try logging in again");
         }
@@ -144,10 +144,7 @@ export default function Login(props) {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
             <Button
               onClick={handleSubmit}
               type="submit"
@@ -159,11 +156,6 @@ export default function Login(props) {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
@@ -178,4 +170,6 @@ export default function Login(props) {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default Login;

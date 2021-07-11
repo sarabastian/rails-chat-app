@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import LandingPage from "./LandingPage";
 import Login from "./Login";
+import SignUp from "./Signup";
+import PatientPage from "./PatientPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -19,8 +21,20 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" component={LandingPage} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/" component={LandingPage} />
+        <Route
+          exact
+          path="/login"
+          component={() => (
+            <Login isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
+          )}
+        />
+        <Route
+          exact
+          path="/signup"
+          component={() => <SignUp handleLogin={handleLogin} />}
+        />
+        <Route exact path="/patient-home" component={PatientPage} />
       </Switch>
     </Router>
   );

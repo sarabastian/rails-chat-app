@@ -16,7 +16,7 @@ class Api::V1::UsersController < ApplicationController
         @user.save
 
         payload = { user_id: @user.id}
-        token = JWT.encode(payload, 'Phase4')
+        token = JWT.encode(payload, 'PatientPartner')
 
         render json: { user: UserSerializer.new(@user), auth_key: token }, status: :created
       else
@@ -35,6 +35,6 @@ class Api::V1::UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :name)
+        params.require(:user).permit(:username, :password, :full_name, :patient, :patient_partner)
     end
 end
