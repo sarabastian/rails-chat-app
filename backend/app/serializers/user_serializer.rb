@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :full_name
+  attributes :id, :username, :full_name, :patient, :patient_partner
 
   
   has_many :messages

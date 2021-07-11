@@ -25,6 +25,6 @@ class Api::V1::ConversationsController < ApplicationController
 
     private
     def conversation_params
-        params.permit(:patient_id, :patient_partner_id)
+        params.permit(:user_id)
     end
 end

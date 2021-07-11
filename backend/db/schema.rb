@@ -16,8 +16,7 @@ ActiveRecord::Schema.define(version: 2021_07_10_174141) do
   enable_extension "plpgsql"
 
   create_table "conversations", force: :cascade do |t|
-    t.integer "patient_id"
-    t.integer "patient_partner_id"
+    t.string "subject_line"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -34,6 +33,8 @@ ActiveRecord::Schema.define(version: 2021_07_10_174141) do
     t.string "username"
     t.string "password_digest"
     t.string "full_name"
+    t.boolean "patient"
+    t.boolean "patient_partner"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
