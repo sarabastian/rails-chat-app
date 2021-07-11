@@ -16,7 +16,8 @@ ActiveRecord::Schema.define(version: 2021_07_10_174141) do
   enable_extension "plpgsql"
 
   create_table "conversations", force: :cascade do |t|
-    t.string "subject_line"
+    t.integer "sender_id"
+    t.integer "receiver_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

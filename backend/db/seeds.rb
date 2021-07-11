@@ -13,6 +13,6 @@ Conversation.destroy_all()
 u1 = User.create(username: 'sb', password: '123', full_name: 'Sara Bastian', patient: true, patient_partner: false)
 u2 = User.create(username: 'sm', password: '12', full_name: 'Sienna Mori', patient: false, patient_partner: true)
 
-c1 = Conversation.create(subject_line: 'Upcoming Surgery')
+c1 = Conversation.create(sender_id: u1.id, receiver_id: u2.id)
 
 m1 = Message.create(body: 'Hi there', conversation_id: c1.id, user_id: u1.id)

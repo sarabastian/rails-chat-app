@@ -42,7 +42,7 @@ const PatientPage = () => {
       .then((r) => r.json())
       .then((users) => setAllUsers(users));
   }, []);
-  console.log(users);
+  // console.log(users);
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -59,7 +59,7 @@ const PatientPage = () => {
             Available PatientPartners
           </Typography>
           <Link to="/logout">
-            <Button color="inherit">Logout</Button>
+            <Button color="white">Logout</Button>
           </Link>
         </Toolbar>
       </AppBar>

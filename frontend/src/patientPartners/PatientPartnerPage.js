@@ -49,7 +49,7 @@ const PatientPartnerPage = () => {
           </IconButton>
           <Typography variant="h6" className={classes.title}></Typography>
           <Link to="/logout">
-            <Button color="inherit">Logout</Button>
+            <Button color="white">Logout</Button>
           </Link>
         </Toolbar>
       </AppBar>

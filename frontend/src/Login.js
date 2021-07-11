@@ -95,7 +95,7 @@ const Login = ({ handleLogin }) => {
       .then((data) => {
         if (data.hasOwnProperty("auth_key")) {
           // console.log(data.user_info);
-          console.log(data);
+          // console.log(data);
           localStorage.setItem("token", data.user_info.user.id);
           handleLogin();
           data.user_info.user.patient
