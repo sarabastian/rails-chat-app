@@ -7,7 +7,6 @@ import {
   Button,
   Typography,
   Grid,
-  Paper,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 

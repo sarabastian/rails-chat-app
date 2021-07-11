@@ -94,11 +94,13 @@ const Login = ({ handleLogin }) => {
 
       .then((data) => {
         if (data.hasOwnProperty("auth_key")) {
-          console.log(data.user_info);
+          // console.log(data.user_info);
           console.log(data);
-          localStorage.setItem("token", data.user_info.user_id);
+          localStorage.setItem("token", data.user_info.user.id);
           handleLogin();
-          history.push("/patient-home");
+          data.user_info.user.patient
+            ? history.push("/patient-home")
+            : history.push("/patient-partner-home");
         } else {
           alert("Oops! We couldn't find you. Please try logging in again");
         }

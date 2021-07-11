@@ -82,7 +82,7 @@ export default function SignUp(props) {
   const name = `${firstName} ${lastName}`;
 
   const handleSubmit = (e) => {
-    console.log("working");
+    // console.log("working");
     e.preventDefault();
 
     fetch("http://localhost:3000/api/v1/signup", {

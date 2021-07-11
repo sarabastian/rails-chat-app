@@ -4,7 +4,7 @@ class Api::V1::SessionsController < ApplicationController
         @user = User.find_by(username: users_params[:username])
         if @user && @user.authenticate(users_params[:password])
     
-            payload = { user_id: @user.id } 
+            payload = { user: @user} 
             token = JWT.encode(payload, 'PatientPartner')
     
             render json: { auth_key: token, user_info: payload }, :status => :ok
