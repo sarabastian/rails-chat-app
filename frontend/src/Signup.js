@@ -53,7 +53,8 @@ export default function SignUp(props) {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-
+  const [patientQ, setPatientQ] = useState(false);
+  const [pPQ, setPPQ] = useState(false);
   const history = useHistory();
 
   const handleUsername = (e) => {
@@ -69,6 +70,13 @@ export default function SignUp(props) {
   };
   const handleLastName = (e) => {
     setLastName(e.target.value);
+  };
+
+  const handlePatientQ = () => {
+    setPatientQ(true);
+  };
+  const handlePPQ = () => {
+    setPPQ(true);
   };
 
   const name = `${firstName} ${lastName}`;
@@ -87,6 +95,8 @@ export default function SignUp(props) {
           username: username,
           password: password,
           full_name: name,
+          patient: patientQ,
+          patient_partner: pPQ,
         },
       }),
     })
@@ -169,8 +179,20 @@ export default function SignUp(props) {
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                control={
+                  <Checkbox
+                    onClick={handlePatientQ}
+                    value={patientQ}
+                    color="primary"
+                  />
+                }
+                label="I am a Patient"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox onClick={handlePPQ} value={pPQ} color="primary" />
+                }
+                label="I am a PatientPartner"
               />
             </Grid>
           </Grid>
