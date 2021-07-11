@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import LandingPage from "./LandingPage";
+import Login from "./Login";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
+  const [isLoggedIn, login] = React.useState(false);
+
+  const handleLogin = () => {
+    if (localStorage.getItem("token")) {
+      login(true);
+    }
+  };
+
+  useEffect(() => {
+    handleLogin();
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" component={LandingPage} />
+        <Route path="/login" component={Login} />
+      </Switch>
+    </Router>
   );
 }
 
