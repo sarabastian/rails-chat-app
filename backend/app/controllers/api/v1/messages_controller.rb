@@ -14,6 +14,7 @@ class Api::V1::MessagesController < ApplicationController
 
     def create
         # conversation = Conversation.find(params[:conversation_id])
+        
         message = Message.create(message_params)
         render json: message
     end

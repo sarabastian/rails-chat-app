@@ -45,13 +45,29 @@ const NewMessage = () => {
       .then((r) => r.json())
       .then((user) => setCurrentUser(user));
   }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/v1/conversations", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        sender_id: currentUser.id,
+        receiver_id: patientPartner.id,
+      }),
+    })
+      .then((r) => r.json())
+      .then((data) => setNewConversation(data));
+  }, []);
   const [currentUser, setCurrentUser] = React.useState({});
+  const [conversation, setNewConversation] = React.useState({});
 
   const classes = useStyles();
   const data = useLocation();
   const patientPartner = data.state.user;
-  const conversation = data.state.conversation;
-  console.log(data);
+
   const [body, setBody] = React.useState("");
 
   const history = useHistory();
@@ -59,7 +75,7 @@ const NewMessage = () => {
   const handleBody = (e) => {
     setBody(e.target.value);
   };
-
+  console.log(conversation);
   const newMessage = (e) => {
     e.preventDefault();
 
@@ -74,9 +90,10 @@ const NewMessage = () => {
         conversation_id: conversation.id,
         user_id: currentUser.id,
       }),
-    }).then((r) => r.json());
-    //   .then((data) => console.log(data));
-    history.push({ pathname: "/patient-home" });
+    })
+      .then((r) => r.json())
+      .then((data) => console.log(data));
+    // history.push({ pathname: "/patient-home" });
   };
   return (
     <>

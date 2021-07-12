@@ -13,14 +13,15 @@ class Api::V1::ConversationsController < ApplicationController
     end
 
     def create 
-        # if Conversation.between(params[:patient_id], params[:patient_partner_id]).present?
-        #     conversation = Conversation.between(params[:patient_id], params[:patient_partner_id]).first
-        #     render json: conversation
-        # else
+        # if Conversation.between(params[:sender_id], params[:receiver_id]).present? 
+        #     conversation = Conversation.between(params[:sender_id], params[:receiver_id]).first
+        #  else
         conversation = Conversation.create(conversation_params)
+        #  end
+  
         render json: conversation
 
-    # end
+
     end
 
     private
