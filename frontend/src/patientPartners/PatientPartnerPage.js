@@ -9,11 +9,10 @@ import {
   List,
   ListItem,
 } from "@material-ui/core";
-
+import MessageCard from "./MessageCard";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/Inbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 
@@ -43,10 +42,9 @@ const PatientPartnerPage = () => {
 
   const [currentUser, setCurrentUser] = React.useState({});
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
-
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
+  const [click, setClick] = React.useState(false);
+  const handleListItemClick = () => {
+    setClick(true);
     handleMessages();
   };
   const [conversations, setReceivedConversations] = React.useState([]);
@@ -76,27 +74,22 @@ const PatientPartnerPage = () => {
         </Toolbar>
       </AppBar>
       <List component="nav" aria-label="main mailbox folders">
-        <ListItem
-          button
-          selected={selectedIndex === 0}
-          onClick={(event) => handleListItemClick(event, 0)}
-        >
+        <ListItem button onClick={handleListItemClick}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Inbox" />
         </ListItem>
-        <ListItem
-          button
-          selected={selectedIndex === 1}
-          onClick={(event) => handleListItemClick(event, 1)}
-        >
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Drafts" />
-        </ListItem>
       </List>
+      {click
+        ? conversations.map((conversation) => (
+            <MessageCard
+              key={conversation.id}
+              conversation={conversation}
+              currentUser={currentUser}
+            />
+          ))
+        : null}
     </div>
   );
 };

@@ -3,6 +3,7 @@ import LandingPage from "./LandingPage";
 import Login from "./Login";
 import SignUp from "./Signup";
 import NewMessage from "./patients/NewMessage";
+import NewReply from "./patientPartners/NewReply";
 import PatientPage from "./patients/PatientPage";
 import PatientPartnerPage from "./patientPartners/PatientPartnerPage";
 import {
@@ -43,6 +44,8 @@ function App() {
         />
         <Route exact path="/patient-home" component={PatientPage} />
         <Route exact path="/new-message" component={NewMessage} />
+        <Route exact path="/new-reply" component={NewReply} />
+
         <Route
           exact
           path="/patient-partner-home"

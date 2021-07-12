@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   AppBar,
   Toolbar,
@@ -29,36 +29,18 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
 }));
-
-const NewMessage = () => {
+const NewReply = () => {
   const classes = useStyles();
   const data = useLocation();
-  const patientPartner = data.state.user;
+  const conversation = data.state.conversation;
   const currentUser = data.state.currentUser;
+  const sender = data.state.sender;
   const [body, setBody] = React.useState("");
-
   const history = useHistory();
 
   const handleBody = (e) => {
     setBody(e.target.value);
   };
-  const [conversation, setNewConversation] = React.useState({});
-
-  useEffect(() => {
-    fetch("http://localhost:3000/api/v1/conversations", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        sender_id: currentUser.id,
-        receiver_id: patientPartner.id,
-      }),
-    })
-      .then((r) => r.json())
-      .then((data) => setNewConversation(data));
-  }, []);
   const newMessage = (e) => {
     e.preventDefault();
 
@@ -73,9 +55,10 @@ const NewMessage = () => {
         conversation_id: conversation.id,
         user_id: currentUser.id,
       }),
-    }).then((r) => r.json());
-    //   .then((data) => console.log(data));
-    history.push({ pathname: "/patient-home" });
+    })
+      .then((r) => r.json())
+      .then((data) => console.log(data));
+    history.push({ pathname: "/patient-partner-home" });
   };
   return (
     <>
@@ -106,7 +89,7 @@ const NewMessage = () => {
         <TextField
           id="standard-read-only-input"
           label="To"
-          defaultValue={patientPartner.full_name}
+          defaultValue={sender.full_name}
           InputProps={{
             readOnly: true,
           }}
@@ -130,4 +113,4 @@ const NewMessage = () => {
   );
 };
 
-export default NewMessage;
+export default NewReply;
