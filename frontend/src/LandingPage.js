@@ -7,6 +7,7 @@ import {
   Button,
   Typography,
   Grid,
+  Box,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
@@ -28,21 +29,41 @@ const LandingPage = () => {
   return (
     <Grid container className={classes.root} spacing={2}>
       <Grid container justifyContent="center">
-        <Card className={classes.paper}>
-          <CardContent>
-            <Typography variant="h5" component="h2">
-              Welcome to PatientPartner!
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Link to="/login">
-              <Button size="small">Log in</Button>
-            </Link>
-            <Link to="/signup">
-              <Button size="small">Sign Up</Button>
-            </Link>
-          </CardActions>
-        </Card>
+        <Box mx="auto" p={8}>
+          <Card>
+            <CardContent>
+              <Typography variant="h4" component="h2">
+                Welcome to PatientPartner!
+              </Typography>
+            </CardContent>
+            <CardContent>
+              <Typography variant="h5" component="h2">
+                For Patients
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Link to="/login">
+                <Button size="small">Log in</Button>
+              </Link>
+              <Link to="/signup">
+                <Button size="small">Sign Up</Button>
+              </Link>
+            </CardActions>
+            <CardContent>
+              <Typography variant="h5" component="h2">
+                For PatientPartners
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Link to="/login">
+                <Button size="small">Log in</Button>
+              </Link>
+              <Link to="/signup">
+                <Button size="small">Sign Up</Button>
+              </Link>
+            </CardActions>
+          </Card>
+        </Box>
       </Grid>
     </Grid>
   );
