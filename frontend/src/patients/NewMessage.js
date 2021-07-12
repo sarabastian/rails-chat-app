@@ -58,7 +58,7 @@ const NewMessage = () => {
     })
       .then((r) => r.json())
       .then((data) => setNewConversation(data));
-  }, []);
+  }, [currentUser.id, patientPartner.id]);
   const newMessage = (e) => {
     e.preventDefault();
 

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import PatientPartnerCard from "./PatientPartnerCard";
 import {
-  Grid,
   AppBar,
   Toolbar,
   IconButton,
@@ -10,6 +9,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
@@ -23,26 +23,31 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     justifyContent: "center",
   },
-
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
 }));
 
 const PatientPage = () => {
   const classes = useStyles();
-
   const [users, setAllUsers] = React.useState([]);
-  useEffect(() => {
+  const [click, setClick] = React.useState(false);
+  const handleClick = () => {
+    setClick(!click);
     fetch("http://localhost:3000/api/v1/users")
       .then((r) => r.json())
-      .then((users) => setAllUsers(users));
+      .then((data) => setAllUsers(data));
+  };
+
+  async function getUsers() {
+    const URL = "http://localhost:3000/api/v1/users";
+    const { data } = await axios.get(URL);
+    return data;
+  }
+  useEffect(() => {
+    (async () => {
+      const result = await getUsers();
+      setAllUsers(result);
+    })();
   }, []);
-  // console.log(users);
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -55,21 +60,20 @@ const PatientPage = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Available PatientPartners
-          </Typography>
+          <Typography variant="h6" className={classes.title}></Typography>
           <Link to="/logout">
             <Button color="white">Logout</Button>
           </Link>
         </Toolbar>
       </AppBar>
-      {users.map((user) =>
-        user.patient_partner ? (
-          <Grid container className={classes.root} spacing={2}>
-            <PatientPartnerCard key={user.id} user={user} />
-          </Grid>
-        ) : null
-      )}
+      <Button onClick={handleClick}>See Available PatientPartners</Button>
+      {click
+        ? users.map((user) =>
+            user.patient_partner ? (
+              <PatientPartnerCard key={user.id} user={user} />
+            ) : null
+          )
+        : null}
     </div>
   );
 };

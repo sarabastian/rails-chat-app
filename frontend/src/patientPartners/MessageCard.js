@@ -27,7 +27,7 @@ const MessageCard = ({ conversation, currentUser }) => {
     fetch(`http://localhost:3000/api/v1/users/${conversation.sender_id}`)
       .then((r) => r.json())
       .then((data) => setSender(data));
-  }, []);
+  }, [conversation.sender_id]);
   return conversation.messages.length > 0 ? (
     <List className={classes.root}>
       <ListItem alignItems="flex-start">
