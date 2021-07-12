@@ -40,11 +40,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NewMessage = () => {
-  useEffect(() => {
-    fetch(`http://localhost:3000/api/v1/users/${parseInt(localStorage.token)}`)
-      .then((r) => r.json())
-      .then((user) => setCurrentUser(user));
-  }, []);
+  const classes = useStyles();
+  const data = useLocation();
+  const patientPartner = data.state.user;
+  const currentUser = data.state.currentUser;
+  const [body, setBody] = React.useState("");
+
+  const history = useHistory();
+
+  const handleBody = (e) => {
+    setBody(e.target.value);
+  };
+  const [conversation, setNewConversation] = React.useState({});
 
   useEffect(() => {
     fetch("http://localhost:3000/api/v1/conversations", {
@@ -61,21 +68,6 @@ const NewMessage = () => {
       .then((r) => r.json())
       .then((data) => setNewConversation(data));
   }, []);
-  const [currentUser, setCurrentUser] = React.useState({});
-  const [conversation, setNewConversation] = React.useState({});
-
-  const classes = useStyles();
-  const data = useLocation();
-  const patientPartner = data.state.user;
-
-  const [body, setBody] = React.useState("");
-
-  const history = useHistory();
-
-  const handleBody = (e) => {
-    setBody(e.target.value);
-  };
-  console.log(conversation);
   const newMessage = (e) => {
     e.preventDefault();
 
@@ -93,7 +85,7 @@ const NewMessage = () => {
     })
       .then((r) => r.json())
       .then((data) => console.log(data));
-    // history.push({ pathname: "/patient-home" });
+    history.push({ pathname: "/patient-home" });
   };
   return (
     <>
