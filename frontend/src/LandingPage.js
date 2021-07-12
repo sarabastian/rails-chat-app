@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    height: 140,
-    width: 100,
+    height: 500,
+    width: 500,
   },
   control: {
     padding: theme.spacing(2),
@@ -27,39 +27,22 @@ const LandingPage = () => {
   const classes = useStyles();
   return (
     <Grid container className={classes.root} spacing={2}>
-      <Grid item xs={12}>
-        <Grid container justifyContent="center">
-          <Card>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                For Patients
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Link to="/login">
-                <Button size="small">Log in</Button>
-              </Link>
-              <Link to="/signup">
-                <Button size="small">Sign Up</Button>
-              </Link>
-            </CardActions>
-          </Card>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                For PatientPartners
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Link to="/login">
-                <Button size="small">Log in</Button>
-              </Link>
-              <Link to="/signup">
-                <Button size="small">Sign Up</Button>
-              </Link>
-            </CardActions>
-          </Card>
-        </Grid>
+      <Grid container justifyContent="center">
+        <Card className={classes.paper}>
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              Welcome to PatientPartner!
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Link to="/login">
+              <Button size="small">Log in</Button>
+            </Link>
+            <Link to="/signup">
+              <Button size="small">Sign Up</Button>
+            </Link>
+          </CardActions>
+        </Card>
       </Grid>
     </Grid>
   );

@@ -6,25 +6,12 @@ import {
   Button,
   Typography,
   Grid,
+  Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
 
 const PatientPartnerCard = ({ user }) => {
-  const classes = useStyles();
   const [currentUser, setCurrentUser] = React.useState({});
 
   useEffect(() => {
@@ -35,7 +22,7 @@ const PatientPartnerCard = ({ user }) => {
 
   return (
     <Grid item xs={12}>
-      <Grid container justifyContent="center">
+      <Box mx="auto" p={3}>
         <Card>
           <CardContent>
             <Typography variant="h5" component="h2">
@@ -57,7 +44,7 @@ const PatientPartnerCard = ({ user }) => {
             </Link>
           </CardActions>
         </Card>
-      </Grid>
+      </Box>
     </Grid>
   );
 };

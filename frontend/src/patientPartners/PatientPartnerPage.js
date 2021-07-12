@@ -38,6 +38,9 @@ const PatientPartnerPage = () => {
     fetch(`http://localhost:3000/api/v1/users/${parseInt(localStorage.token)}`)
       .then((r) => r.json())
       .then((user) => setCurrentUser(user));
+    fetch(`http://localhost:3000/api/v1/users/${parseInt(localStorage.token)}`)
+      .then((r) => r.json())
+      .then((data) => setReceivedConversations(data.received_conversations));
   }, []);
 
   const [currentUser, setCurrentUser] = React.useState({});
@@ -48,11 +51,7 @@ const PatientPartnerPage = () => {
     handleMessages();
   };
   const [conversations, setReceivedConversations] = React.useState([]);
-  const handleMessages = () => {
-    fetch(`http://localhost:3000/api/v1/users/${parseInt(localStorage.token)}`)
-      .then((r) => r.json())
-      .then((data) => setReceivedConversations(data.received_conversations));
-  };
+  const handleMessages = () => {};
 
   console.log(conversations);
   return (
@@ -81,15 +80,13 @@ const PatientPartnerPage = () => {
           <ListItemText primary="Inbox" />
         </ListItem>
       </List>
-      {click
-        ? conversations.map((conversation) => (
-            <MessageCard
-              key={conversation.id}
-              conversation={conversation}
-              currentUser={currentUser}
-            />
-          ))
-        : null}
+      {conversations.map((conversation) => (
+        <MessageCard
+          key={conversation.id}
+          conversation={conversation}
+          currentUser={currentUser}
+        />
+      ))}
     </div>
   );
 };
