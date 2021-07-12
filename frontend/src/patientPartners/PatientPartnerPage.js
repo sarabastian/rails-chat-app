@@ -45,15 +45,9 @@ const PatientPartnerPage = () => {
 
   const [currentUser, setCurrentUser] = React.useState({});
   const classes = useStyles();
-  const [click, setClick] = React.useState(false);
-  const handleListItemClick = () => {
-    setClick(true);
-    handleMessages();
-  };
-  const [conversations, setReceivedConversations] = React.useState([]);
-  const handleMessages = () => {};
 
-  console.log(conversations);
+  const [conversations, setReceivedConversations] = React.useState([]);
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -73,7 +67,7 @@ const PatientPartnerPage = () => {
         </Toolbar>
       </AppBar>
       <List component="nav" aria-label="main mailbox folders">
-        <ListItem button onClick={handleListItemClick}>
+        <ListItem button>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>

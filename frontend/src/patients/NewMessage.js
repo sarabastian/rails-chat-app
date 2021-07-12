@@ -74,7 +74,6 @@ const NewMessage = () => {
         user_id: currentUser.id,
       }),
     }).then((r) => r.json());
-    //   .then((data) => console.log(data));
     history.push({ pathname: "/patient-home" });
   };
   return (

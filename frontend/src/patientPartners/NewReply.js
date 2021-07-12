@@ -55,9 +55,8 @@ const NewReply = () => {
         conversation_id: conversation.id,
         user_id: currentUser.id,
       }),
-    })
-      .then((r) => r.json())
-      .then((data) => console.log(data));
+    }).then((r) => r.json());
+    // .then((data) => console.log(data));
     history.push({ pathname: "/patient-partner-home" });
   };
   return (
